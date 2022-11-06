@@ -35,3 +35,7 @@ use "testParserCases.sml"
 
 (* Try to add a systematic way of using the test cases in
    testParserCases to stress test your parser *)
+
+fun testCases([], broken) = "Pass\n" | testCases((a:string,b:expr)::t, broken) = if (fromString(a) = b) then testCases(t, a) else a;
+print(testCases(cases,""));
+fromString(testCases(cases,""));
