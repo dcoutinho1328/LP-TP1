@@ -31,11 +31,11 @@ fromString "fun f(Int x) = x; f(1)";
 fromString "match x with | 0 -> 1| _ -> -1 end";
 fromFile ("example.plc");
 
-use "testParserCases.sml"
+use "testParserCases.sml";
 
 (* Try to add a systematic way of using the test cases in
    testParserCases to stress test your parser *)
 
-fun testCases([], broken) = "Pass\n" | testCases((a:string,b:expr)::t, broken) = if (fromString(a) = b) then testCases(t, a) else a;
-print(testCases(cases,""));
-fromString(testCases(cases,""));
+fun testCases([], brk) = "Passed!!\n" | testCases((s:string,e:expr)::c, brk) = if (e = fromString s) then testCases(c, "") else s;
+
+print(testCases(cases,""))
